@@ -1,5 +1,4 @@
 import { useNavigate, useLocation, Routes, Route, Navigate } from "react-router-dom";
-import "@/styles/App.css";
 import MainPage from "@/popUpPage/pages/MainPage";
 import SettingPage from "@/popUpPage/pages/SettingPage";
 

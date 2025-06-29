@@ -1,12 +1,17 @@
 const follower = document.createElement("div");
 Object.assign(follower.style, {
   position: "absolute",
-  width: "30px",
-  height: "30px",
-  background: "rgba(79, 42, 225, 0.5)",
+  width: "180px",
+  height: "180px",
   borderRadius: "50%",
   pointerEvents: "none",
   zIndex: 9999,
+  background: `conic-gradient(
+    from -110deg,
+    transparent 0deg 130deg,
+    rgba(196, 196, 196, 1) 90deg 360deg
+  )`,
+  maskImage: "radial-gradient(circle at center, transparent 35px, black 11px)",
 });
 document.body.appendChild(follower);
 
@@ -33,6 +38,6 @@ document.addEventListener(
 );
 
 function updateFollowerPosition() {
-  follower.style.left = lastCursor.x - 15 + "px";
-  follower.style.top = lastCursor.y - 15 + "px";
+  follower.style.left = lastCursor.x - 85 + "px";
+  follower.style.top = lastCursor.y - 75 + "px";
 }

@@ -2,7 +2,16 @@ let isElementInteractive = false;
 let lastCursorPosition = { x: 0, y: 0 };
 let lastScrollYPosition = window.scrollY;
 
+chrome.runtime.onMessage.addListener((message) => {
+  if (message.action === "removeToolbar") {
+    const element = document.getElementById("donuTool-toolBar");
+    if (element) element.remove();
+  }
+});
+
 const toolBarUI = document.createElement("div");
+toolBarUI.id = "donuTool-toolBar";
+
 Object.assign(toolBarUI.style, {
   position: "absolute",
   width: "180px",

@@ -1,17 +1,38 @@
 const follower = document.createElement("div");
-follower.style.position = "absolute";
-follower.style.left = "0px";
-follower.style.top = "0px";
-follower.style.width = "30px";
-follower.style.height = "30px";
-follower.style.background = "rgba(79, 42, 225, 0.5)";
-follower.style.borderRadius = "50%";
-follower.style.pointerEvents = "none";
-follower.style.zIndex = "9999";
+Object.assign(follower.style, {
+  position: "absolute",
+  width: "30px",
+  height: "30px",
+  background: "rgba(79, 42, 225, 0.5)",
+  borderRadius: "50%",
+  pointerEvents: "none",
+  zIndex: 9999,
+});
 document.body.appendChild(follower);
 
+let lastCursor = { x: 0, y: 0 };
+let lastScrollY = window.scrollY;
+
 window.addEventListener("mousemove", (e) => {
-  follower.style.left = e.pageX - 15 + "px";
-  follower.style.top = e.pageY - 15 + "px";
-  console.log(document.elementFromPoint(e.clientX, e.clientY));
+  lastCursor = {
+    x: e.pageX,
+    y: e.pageY,
+  };
+  updateFollowerPosition();
 });
+
+document.addEventListener(
+  "scroll",
+  () => {
+    const deltaY = window.scrollY - lastScrollY;
+    lastCursor.y += deltaY;
+    lastScrollY = window.scrollY;
+    updateFollowerPosition();
+  },
+  true
+);
+
+function updateFollowerPosition() {
+  follower.style.left = lastCursor.x - 15 + "px";
+  follower.style.top = lastCursor.y - 15 + "px";
+}

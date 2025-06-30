@@ -1,0 +1,30 @@
+import { useToolInfo } from "@/store/useToolInfo";
+
+export default function StartButton() {
+  const { isDonuToolActive, setIsDonuToolActive } = useToolInfo();
+
+  const addToolBarUI = () => {
+    chrome.storage.local.get("donuToolActive", async (data) => {
+      if (!data.donuToolActive) {
+        const tabs = await chrome.tabs.query({});
+        tabs.forEach((tab) => {
+          chrome.scripting.executeScript({
+            target: { tabId: tab.id! },
+            files: ["content/content.js"],
+          });
+        });
+        chrome.storage.local.set({ donuToolActive: true });
+        setIsDonuToolActive(true);
+      }
+      return;
+    });
+  };
+
+  return (
+    <button
+      onClick={addToolBarUI}
+      className="font-semibold absolute top-3 text-xs right-31 px-3.5 py-2 flex cursor-pointer items-center justify-center rounded-full text-gray-600 bg-gray-100 p-1 shadow transition duration-300 hover:shadow-md">
+      시작
+    </button>
+  );
+}

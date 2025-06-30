@@ -7,12 +7,23 @@ export default function MainPage() {
     navigate("/setting");
   };
 
-  const removeToolBar = () => {
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      chrome.tabs.sendMessage(tabs[0].id!, {
-        action: "removeToolbar",
+  const addToolBarUI = async () => {
+    const tabs = await chrome.tabs.query({});
+    tabs.forEach((tab) => {
+      chrome.scripting.executeScript({
+        target: { tabId: tab.id! },
+        files: ["content/content.js"],
       });
     });
+    chrome.storage.local.set({ donuToolActive: true });
+  };
+
+  const removeToolBarUI = async () => {
+    const tabs = await chrome.tabs.query({});
+    tabs.forEach((tab) => {
+      chrome.tabs.sendMessage(tab.id!, { action: "removeToolbar" });
+    });
+    chrome.storage.local.set({ donuToolActive: false });
   };
 
   return (
@@ -24,7 +35,12 @@ export default function MainPage() {
         전체화면
       </button>
       <button
-        onClick={removeToolBar}
+        onClick={addToolBarUI}
+        className="font-semibold absolute top-3 text-xs right-31 px-3.5 py-2 flex cursor-pointer items-center justify-center rounded-full text-gray-600 bg-gray-100 p-1 shadow transition duration-300 hover:shadow-md">
+        시작
+      </button>
+      <button
+        onClick={removeToolBarUI}
         className="font-semibold absolute top-3 text-xs right-17 px-3.5 py-2 flex cursor-pointer items-center justify-center rounded-full text-gray-600 bg-gray-100 p-1 shadow transition duration-300 hover:shadow-md">
         종료
       </button>

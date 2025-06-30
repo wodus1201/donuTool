@@ -1,8 +1,12 @@
-chrome.action.onClicked.addListener(async (tab) => {
-  if (!tab.id) return;
-
-  await chrome.scripting.executeScript({
-    target: { tabId: tab.id },
-    files: ["content.js"],
-  });
+chrome.tabs.onUpdated.addListener((tabId, changeInfo) => {
+  if (changeInfo.status === "complete") {
+    chrome.storage.local.get("donuToolActive", (data) => {
+      if (data.donuToolActive) {
+        chrome.scripting.executeScript({
+          target: { tabId },
+          files: ["content/content.js"],
+        });
+      }
+    });
+  }
 });

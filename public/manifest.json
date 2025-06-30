@@ -3,6 +3,12 @@
   "name": "DonuTool",
   "version": "1.0",
   "description": "DonuTool is a floating cursor-following toolbar that offers instant, overlay-based access to essential tools.",
+  "icons": {
+    "16": "assets/donuTool-logo-white.png",
+    "32": "assets/donuTool-logo-white.png",
+    "48": "assets/donuTool-logo-white.png",
+    "128": "assets/donuTool-logo-white.png"
+  },
   "action": {
     "default_popup": "index.html"
   },
@@ -10,18 +16,12 @@
     "service_worker": "background/background.js",
     "type": "module"
   },
-  "permissions": ["storage", "scripting", "activeTab", "tabs"],
-  "host_permissions": ["<all_urls>"],
-  "icons": {
-    "16": "assets/donuTool-logo-white.png",
-    "32": "assets/donuTool-logo-white.png",
-    "48": "assets/donuTool-logo-white.png",
-    "128": "assets/donuTool-logo-white.png"
-  },
   "web_accessible_resources": [
     {
       "resources": ["assets/donuToolBar.png"],
       "matches": ["<all_urls>"]
     }
-  ]
+  ],
+  "permissions": ["storage", "scripting", "activeTab", "tabs"],
+  "host_permissions": ["<all_urls>"]
 }

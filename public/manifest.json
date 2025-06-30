@@ -17,5 +17,11 @@
     "32": "assets/donuTool-logo-white.png",
     "48": "assets/donuTool-logo-white.png",
     "128": "assets/donuTool-logo-white.png"
-  }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["assets/donuToolBar.png"],
+      "matches": ["<all_urls>"]
+    }
+  ]
 }

@@ -20,6 +20,10 @@ export default defineConfig({
           src: "src/content/*",
           dest: "content",
         },
+        {
+          src: "src/assets/*",
+          dest: "assets",
+        },
       ],
     }),
   ],

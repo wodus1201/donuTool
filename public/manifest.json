@@ -13,9 +13,9 @@
   "permissions": ["storage", "scripting", "activeTab", "tabs"],
   "host_permissions": ["<all_urls>"],
   "icons": {
-    "16": "donuTool-logo-white.png",
-    "32": "donuTool-logo-white.png",
-    "48": "donuTool-logo-white.png",
-    "128": "donuTool-logo-white.png"
+    "16": "assets/donuTool-logo-white.png",
+    "32": "assets/donuTool-logo-white.png",
+    "48": "assets/donuTool-logo-white.png",
+    "128": "assets/donuTool-logo-white.png"
   }
 }

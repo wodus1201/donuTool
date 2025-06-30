@@ -1,6 +1,9 @@
+import GoBackButton from "@/popUpPage/components/GoBackButton";
+
 export default function SettingPage() {
   return (
     <>
+      <GoBackButton />
       <div className="text-2xl font-bold mb-7">설정</div>
       <div className="rounded-2xl w-[200px] h-[150px] mb-7 flex justify-center items-center bg-white">툴바UI</div>
       <div className="w-[300px] h-[100px] flex justify-center items-center">

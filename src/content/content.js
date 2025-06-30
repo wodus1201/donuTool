@@ -66,8 +66,11 @@ function checkCursorEvent(element) {
 
 function getRotationAngle(x, y, width, height) {
   const MARGIN = 90;
-  if (x < MARGIN) return "rotate(-43deg)";
-  if (x > width - MARGIN) return "rotate(134deg)";
+  if (x < MARGIN && y > height - MARGIN) return "rotate(-90deg)";
+  if (y < MARGIN && x > width - MARGIN) return "rotate(90deg)";
+  if (x > width - MARGIN && y > height - MARGIN) return "rotate(180deg)";
+  if (x < MARGIN) return "rotate(-45deg)";
+  if (x > width - MARGIN) return "rotate(135deg)";
   if (y < MARGIN) return "rotate(45deg)";
   if (y > height - MARGIN) return "rotate(225deg)";
   return "rotate(0deg)";

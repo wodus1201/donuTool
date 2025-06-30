@@ -3,6 +3,12 @@ let lastCursorPosition = { x: 0, y: 0 };
 let lastScrollYPosition = window.scrollY;
 
 chrome.runtime.onMessage.addListener((message) => {
+  if (message.action === "requestFullscreen") {
+    document.documentElement.requestFullscreen();
+  }
+});
+
+chrome.runtime.onMessage.addListener((message) => {
   if (message.action === "removeToolbar") {
     const element = document.getElementById("donuTool-toolBar");
     if (element) element.remove();

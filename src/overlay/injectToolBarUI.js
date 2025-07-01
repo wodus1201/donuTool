@@ -1,5 +1,6 @@
 (async () => {
   const { updateToolBarUIPosition, checkCursorEvent, getRotationAngle } = await import(chrome.runtime.getURL("overlay/toolBarUtils.js"));
+  const { createToolBarElement } = await import(chrome.runtime.getURL("overlay/toolBarElement.js"));
 
   chrome.runtime.onMessage.addListener((message) => {
     if (message.action === "requestFullscreen") {
@@ -19,22 +20,7 @@
   let lastCursorPosition = { x: 0, y: 0 };
   let lastScrollYPosition = window.scrollY;
 
-  const toolBarUI = document.createElement("img");
-  toolBarUI.id = "donuTool-toolBar";
-  toolBarUI.src = chrome.runtime.getURL("assets/donuToolBar.png");
-
-  toolBarUI.setAttribute("draggable", "false");
-  Object.assign(toolBarUI.style, {
-    position: "absolute",
-    width: "180px",
-    height: "180px",
-    filter: "brightness(1.15)",
-    pointerEvents: "none",
-    webkitUserDrag: "none",
-    userSelect: "none",
-    zIndex: 9999,
-    transition: "opacity 0.3s ease, transform 0.3s ease",
-  });
+  const toolBarUI = createToolBarElement();
   document.body.appendChild(toolBarUI);
 
   window.addEventListener("mousedown", () => {

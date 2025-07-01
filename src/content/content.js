@@ -71,13 +71,12 @@
         y: e.pageY,
       };
       updateToolBarUIPosition();
+      toolBarUI.style.transform = getRotationAngle(e.clientX, e.clientY, window.innerWidth, window.innerHeight);
     }
 
     const elementUnderCursor = document.elementFromPoint(e.clientX, e.clientY);
     isElementInteractive = checkCursorEvent(elementUnderCursor);
     toolBarUI.style.opacity = isElementInteractive ? 0.1 : 1;
-
-    toolBarUI.style.transform = getRotationAngle(e.clientX, e.clientY, window.innerWidth, window.innerHeight);
   });
 
   document.addEventListener(

@@ -13,16 +13,17 @@
   const toolBarUI = createToolBarElement();
   document.body.appendChild(toolBarUI);
 
-  const button1 = document.getElementById("donuTool-button1");
-  button1.style.transition = "transform 0.3s ease";
-  const button2 = document.getElementById("donuTool-button2");
-  button2.style.transition = "transform 0.3s ease";
-  const button3 = document.getElementById("donuTool-button3");
-  button3.style.transition = "transform 0.3s ease";
-  const button4 = document.getElementById("donuTool-button4");
-  button4.style.transition = "transform 0.3s ease";
-  const button5 = document.getElementById("donuTool-button5");
-  button5.style.transition = "transform 0.3s ease";
+  const buttonsInToolBar = [
+    document.getElementById("donuTool-button1"),
+    document.getElementById("donuTool-button2"),
+    document.getElementById("donuTool-button3"),
+    document.getElementById("donuTool-button4"),
+    document.getElementById("donuTool-button5"),
+  ];
+
+  buttonsInToolBar.forEach((button) => {
+    button.style.transition = "transform 0.3s ease";
+  });
 
   window.addEventListener("mousedown", () => {
     if (!isElementInteractive) {
@@ -62,11 +63,10 @@
       };
       updateToolBarUIPosition(toolBarUI, lastCursorPosition);
       toolBarUI.style.transform = getRotationAngle(e.clientX, e.clientY, window.innerWidth, window.innerHeight);
-      button1.style.transform = getReverseRotationAngle(e.clientX, e.clientY, window.innerWidth, window.innerHeight);
-      button2.style.transform = getReverseRotationAngle(e.clientX, e.clientY, window.innerWidth, window.innerHeight);
-      button3.style.transform = getReverseRotationAngle(e.clientX, e.clientY, window.innerWidth, window.innerHeight);
-      button4.style.transform = getReverseRotationAngle(e.clientX, e.clientY, window.innerWidth, window.innerHeight);
-      button5.style.transform = getReverseRotationAngle(e.clientX, e.clientY, window.innerWidth, window.innerHeight);
+
+      buttonsInToolBar.forEach((button) => {
+        button.style.transform = getReverseRotationAngle(e.clientX, e.clientY, window.innerWidth, window.innerHeight);
+      });
     }
 
     const elementUnderCursor = document.elementFromPoint(e.clientX, e.clientY);

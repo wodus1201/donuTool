@@ -21,11 +21,14 @@
   toolBarUI.id = "donuTool-toolBar";
   toolBarUI.src = chrome.runtime.getURL("assets/donuToolBar.png");
 
+  toolBarUI.setAttribute("draggable", "false");
   Object.assign(toolBarUI.style, {
     position: "absolute",
     width: "180px",
     height: "180px",
     pointerEvents: "none",
+    webkitUserDrag: "none",
+    userSelect: "none",
     zIndex: 9999,
     transition: "opacity 0.3s ease, transform 0.3s ease",
   });
@@ -35,6 +38,10 @@
     if (!isElementInteractive) {
       isMouseDown = true;
       updateToolBarUIPosition();
+      toolBarUI.style.pointerEvents = "auto";
+      document.body.style.pointerEvents = "none";
+      document.body.style.webkitUserDrag = "none";
+      document.body.style.userSelect = "none";
     }
   });
 
@@ -47,6 +54,10 @@
 
     toolBarUI.style.transition = "left 0.3s ease, top 0.3s ease";
     updateToolBarUIPosition();
+    toolBarUI.style.pointerEvents = "none";
+    document.body.style.pointerEvents = "auto";
+    document.body.style.webkitUserDrag = "auto";
+    document.body.style.userSelect = "auto";
 
     setTimeout(() => {
       toolBarUI.style.transition = "opacity 0.3s ease, transform 0.3s ease";

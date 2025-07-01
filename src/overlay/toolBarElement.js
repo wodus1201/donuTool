@@ -31,6 +31,9 @@ export function createToolBarElement() {
 
   toolBarButtonElement1.id = "donuTool-button1";
   toolBarButtonElement1.setAttribute("draggable", "false");
+  toolBarButtonElement1.addEventListener("mouseup", () => {
+    alert("첫 번째 버튼 클릭됨");
+  });
   Object.assign(toolBarButtonElement1.style, {
     position: "absolute",
     top: "18px",
@@ -38,11 +41,14 @@ export function createToolBarElement() {
     width: "40px",
     height: "40px",
     borderRadius: "50%",
-    backgroundColor: "lightslategray",
+    backgroundColor: "lightgray",
   });
 
   toolBarButtonElement2.id = "donuTool-button1";
   toolBarButtonElement2.setAttribute("draggable", "false");
+  toolBarButtonElement2.addEventListener("mouseup", () => {
+    alert("두 번째 버튼 클릭됨");
+  });
   Object.assign(toolBarButtonElement2.style, {
     position: "absolute",
     top: "64px",
@@ -50,11 +56,14 @@ export function createToolBarElement() {
     width: "40px",
     height: "40px",
     borderRadius: "50%",
-    backgroundColor: "lightslategray",
+    backgroundColor: "lightgray",
   });
 
   toolBarButtonElement3.id = "donuTool-button2";
   toolBarButtonElement3.setAttribute("draggable", "false");
+  toolBarButtonElement3.addEventListener("mouseup", () => {
+    alert("세 번째 버튼 클릭됨");
+  });
   Object.assign(toolBarButtonElement3.style, {
     position: "absolute",
     top: "112px",
@@ -62,11 +71,14 @@ export function createToolBarElement() {
     width: "40px",
     height: "40px",
     borderRadius: "50%",
-    backgroundColor: "lightslategray",
+    backgroundColor: "lightgray",
   });
 
   toolBarButtonElement4.id = "donuTool-button2";
   toolBarButtonElement4.setAttribute("draggable", "false");
+  toolBarButtonElement4.addEventListener("mouseup", () => {
+    alert("네 번째 버튼 클릭됨");
+  });
   Object.assign(toolBarButtonElement4.style, {
     position: "absolute",
     top: "131px",
@@ -74,11 +86,14 @@ export function createToolBarElement() {
     width: "40px",
     height: "40px",
     borderRadius: "50%",
-    backgroundColor: "lightslategray",
+    backgroundColor: "lightgray",
   });
 
   toolBarButtonElement5.id = "donuTool-button2";
   toolBarButtonElement5.setAttribute("draggable", "false");
+  toolBarButtonElement5.addEventListener("mouseup", () => {
+    alert("다섯 번째 버튼 클릭됨");
+  });
   Object.assign(toolBarButtonElement5.style, {
     position: "absolute",
     top: "111px",
@@ -86,7 +101,7 @@ export function createToolBarElement() {
     width: "40px",
     height: "40px",
     borderRadius: "50%",
-    backgroundColor: "lightslategray",
+    backgroundColor: "lightgray",
   });
 
   toolBarElement.appendChild(toolBarImage);

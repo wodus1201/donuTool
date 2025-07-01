@@ -1,12 +1,5 @@
 export function createToolBarElement() {
   const toolBarElement = document.createElement("div");
-  const toolBarImage = document.createElement("img");
-  const toolBarButtonElement1 = document.createElement("div");
-  const toolBarButtonElement2 = document.createElement("div");
-  const toolBarButtonElement3 = document.createElement("div");
-  const toolBarButtonElement4 = document.createElement("div");
-  const toolBarButtonElement5 = document.createElement("div");
-
   toolBarElement.id = "donuTool-toolBar";
   toolBarElement.setAttribute("draggable", "false");
   Object.assign(toolBarElement.style, {
@@ -18,7 +11,7 @@ export function createToolBarElement() {
     transition: "opacity 0.3s ease, transform 0.3s ease",
   });
 
-  toolBarElement.setAttribute("draggable", "false");
+  const toolBarImage = document.createElement("img");
   toolBarImage.src = chrome.runtime.getURL("assets/donuToolBar.png");
   Object.assign(toolBarImage.style, {
     width: "180px",
@@ -28,88 +21,52 @@ export function createToolBarElement() {
     webkitUserDrag: "none",
     userSelect: "none",
   });
+  toolBarElement.appendChild(toolBarImage);
 
-  toolBarButtonElement1.id = "donuTool-button1";
-  toolBarButtonElement1.setAttribute("draggable", "false");
-  toolBarButtonElement1.addEventListener("mouseup", () => {
+  const toolBarButtonElement1 = createToolBarButton("donuTool-button1", "18px", "112px", () => {
     window.history.go(-1);
   });
-  Object.assign(toolBarButtonElement1.style, {
-    position: "absolute",
-    top: "18px",
-    left: "112px",
-    width: "40px",
-    height: "40px",
-    borderRadius: "50%",
-    backgroundColor: "lightgray",
-  });
+  toolBarElement.appendChild(toolBarButtonElement1);
 
-  toolBarButtonElement2.id = "donuTool-button2";
-  toolBarButtonElement2.setAttribute("draggable", "false");
-  toolBarButtonElement2.addEventListener("mouseup", () => {
+  const toolBarButtonElement2 = createToolBarButton("donuTool-button2", "64px", "131px", () => {
     window.history.go(1);
   });
-  Object.assign(toolBarButtonElement2.style, {
-    position: "absolute",
-    top: "64px",
-    left: "131px",
-    width: "40px",
-    height: "40px",
-    borderRadius: "50%",
-    backgroundColor: "lightgray",
-  });
+  toolBarElement.appendChild(toolBarButtonElement2);
 
-  toolBarButtonElement3.id = "donuTool-button3";
-  toolBarButtonElement3.setAttribute("draggable", "false");
-  toolBarButtonElement3.addEventListener("mouseup", () => {
+  const toolBarButtonElement3 = createToolBarButton("donuTool-button3", "112px", "112px", () => {
     window.open("https://www.google.com", "_blank");
   });
-  Object.assign(toolBarButtonElement3.style, {
-    position: "absolute",
-    top: "112px",
-    left: "112px",
-    width: "40px",
-    height: "40px",
-    borderRadius: "50%",
-    backgroundColor: "lightgray",
-  });
+  toolBarElement.appendChild(toolBarButtonElement3);
 
-  toolBarButtonElement4.id = "donuTool-button4";
-  toolBarButtonElement4.setAttribute("draggable", "false");
-  toolBarButtonElement4.addEventListener("mouseup", () => {
+  const toolBarButtonElement4 = createToolBarButton("donuTool-button4", "131px", "64px", () => {
     chrome.runtime.sendMessage({ action: "goToNextTab" });
   });
-  Object.assign(toolBarButtonElement4.style, {
-    position: "absolute",
-    top: "131px",
-    left: "64px",
-    width: "40px",
-    height: "40px",
-    borderRadius: "50%",
-    backgroundColor: "lightgray",
-  });
+  toolBarElement.appendChild(toolBarButtonElement4);
 
-  toolBarButtonElement5.id = "donuTool-button5";
-  toolBarButtonElement5.setAttribute("draggable", "false");
-  toolBarButtonElement5.addEventListener("mouseup", () => {
+  const toolBarButtonElement5 = createToolBarButton("donuTool-button5", "111px", "19px", () => {
     chrome.runtime.sendMessage({ action: "goToPreviousTab" });
   });
-  Object.assign(toolBarButtonElement5.style, {
-    position: "absolute",
-    top: "111px",
-    left: "19px",
-    width: "40px",
-    height: "40px",
-    borderRadius: "50%",
-    backgroundColor: "lightgray",
-  });
-
-  toolBarElement.appendChild(toolBarImage);
-  toolBarElement.appendChild(toolBarButtonElement1);
-  toolBarElement.appendChild(toolBarButtonElement2);
-  toolBarElement.appendChild(toolBarButtonElement3);
-  toolBarElement.appendChild(toolBarButtonElement4);
   toolBarElement.appendChild(toolBarButtonElement5);
 
   return toolBarElement;
+}
+
+function createToolBarButton(id, top, left, onClick) {
+  const button = document.createElement("div");
+
+  button.id = id;
+  button.setAttribute("draggable", "false");
+  button.addEventListener("mouseup", onClick);
+
+  Object.assign(button.style, {
+    position: "absolute",
+    top: top,
+    left: left,
+    width: "40px",
+    height: "40px",
+    borderRadius: "50%",
+    backgroundColor: "lightgray",
+  });
+
+  return button;
 }

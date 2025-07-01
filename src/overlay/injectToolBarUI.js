@@ -1,19 +1,9 @@
 (async () => {
   const { updateToolBarUIPosition, checkCursorEvent, getRotationAngle } = await import(chrome.runtime.getURL("overlay/toolBarUtils.js"));
   const { createToolBarElement } = await import(chrome.runtime.getURL("overlay/toolBarElement.js"));
+  const { handleMessageFromPopUp } = await import(chrome.runtime.getURL("overlay/messageHandler.js"));
 
-  chrome.runtime.onMessage.addListener((message) => {
-    if (message.action === "requestFullscreen") {
-      document.documentElement.requestFullscreen();
-    }
-  });
-
-  chrome.runtime.onMessage.addListener((message) => {
-    if (message.action === "removeToolbar") {
-      const element = document.getElementById("donuTool-toolBar");
-      if (element) element.remove();
-    }
-  });
+  handleMessageFromPopUp();
 
   let isElementInteractive = false;
   let isMouseDown = false;

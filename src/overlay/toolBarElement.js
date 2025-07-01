@@ -32,7 +32,7 @@ export function createToolBarElement() {
   toolBarButtonElement1.id = "donuTool-button1";
   toolBarButtonElement1.setAttribute("draggable", "false");
   toolBarButtonElement1.addEventListener("mouseup", () => {
-    alert("첫 번째 버튼 클릭됨");
+    window.history.go(-1);
   });
   Object.assign(toolBarButtonElement1.style, {
     position: "absolute",
@@ -47,7 +47,7 @@ export function createToolBarElement() {
   toolBarButtonElement2.id = "donuTool-button1";
   toolBarButtonElement2.setAttribute("draggable", "false");
   toolBarButtonElement2.addEventListener("mouseup", () => {
-    alert("두 번째 버튼 클릭됨");
+    window.history.go(1);
   });
   Object.assign(toolBarButtonElement2.style, {
     position: "absolute",
@@ -62,7 +62,7 @@ export function createToolBarElement() {
   toolBarButtonElement3.id = "donuTool-button2";
   toolBarButtonElement3.setAttribute("draggable", "false");
   toolBarButtonElement3.addEventListener("mouseup", () => {
-    alert("세 번째 버튼 클릭됨");
+    window.open("https://www.google.com", "_blank");
   });
   Object.assign(toolBarButtonElement3.style, {
     position: "absolute",

@@ -17,8 +17,8 @@ export default defineConfig({
           dest: "background",
         },
         {
-          src: "src/content/*",
-          dest: "content",
+          src: "src/overlay/*",
+          dest: "overlay",
         },
         {
           src: "src/assets/*",

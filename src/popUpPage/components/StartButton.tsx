@@ -6,7 +6,7 @@ export default function StartButton() {
         tabs.forEach((tab) => {
           chrome.scripting.executeScript({
             target: { tabId: tab.id! },
-            files: ["content/content.js"],
+            files: ["overlay/injectToolBarUI.js"],
           });
         });
         chrome.storage.local.set({ donuToolActive: true });

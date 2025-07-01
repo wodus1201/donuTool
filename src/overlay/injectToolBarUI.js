@@ -26,6 +26,7 @@
     position: "absolute",
     width: "180px",
     height: "180px",
+    filter: "brightness(1.15)",
     pointerEvents: "none",
     webkitUserDrag: "none",
     userSelect: "none",
@@ -76,7 +77,7 @@
 
     const elementUnderCursor = document.elementFromPoint(e.clientX, e.clientY);
     isElementInteractive = checkCursorEvent(elementUnderCursor);
-    toolBarUI.style.opacity = isElementInteractive ? 0.1 : 1;
+    toolBarUI.style.opacity = isElementInteractive ? 0.3 : 1;
   });
 
   document.addEventListener(

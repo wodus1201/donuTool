@@ -19,5 +19,5 @@
       "@/*": ["src/*"]
     }
   },
-  "include": ["src", "src/content/content.js"]
+  "include": ["src", "src/overlay/injectToolBarUI.js"]
 }

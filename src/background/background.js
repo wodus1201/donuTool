@@ -4,7 +4,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
       if (data.donuToolActive) {
         chrome.scripting.executeScript({
           target: { tabId },
-          files: ["content/content.js"],
+          files: ["overlay/injectToolBarUI.js"],
         });
       }
     });

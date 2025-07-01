@@ -20,7 +20,7 @@ export function getRotationAngle(x, y, width, height) {
   if (x < MARGIN) return "rotate(-45deg)";
   if (x > width - MARGIN) return "rotate(135deg)";
   if (y < MARGIN) return "rotate(45deg)";
-  if (y > height - MARGIN) return "rotate(225deg)";
+  if (y > height - MARGIN) return "rotate(-135deg)";
   return "rotate(0deg)";
 }
 
@@ -32,6 +32,6 @@ export function getReverseRotationAngle(x, y, width, height) {
   if (x < MARGIN) return "rotate(45deg)";
   if (x > width - MARGIN) return "rotate(-135deg)";
   if (y < MARGIN) return "rotate(-45deg)";
-  if (y > height - MARGIN) return "rotate(-225deg)";
+  if (y > height - MARGIN) return "rotate(135deg)";
   return "rotate(0deg)";
 }

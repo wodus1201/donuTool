@@ -44,7 +44,7 @@ export function createToolBarElement() {
     backgroundColor: "lightgray",
   });
 
-  toolBarButtonElement2.id = "donuTool-button1";
+  toolBarButtonElement2.id = "donuTool-button2";
   toolBarButtonElement2.setAttribute("draggable", "false");
   toolBarButtonElement2.addEventListener("mouseup", () => {
     window.history.go(1);
@@ -59,7 +59,7 @@ export function createToolBarElement() {
     backgroundColor: "lightgray",
   });
 
-  toolBarButtonElement3.id = "donuTool-button2";
+  toolBarButtonElement3.id = "donuTool-button3";
   toolBarButtonElement3.setAttribute("draggable", "false");
   toolBarButtonElement3.addEventListener("mouseup", () => {
     window.open("https://www.google.com", "_blank");
@@ -74,10 +74,10 @@ export function createToolBarElement() {
     backgroundColor: "lightgray",
   });
 
-  toolBarButtonElement4.id = "donuTool-button2";
+  toolBarButtonElement4.id = "donuTool-button4";
   toolBarButtonElement4.setAttribute("draggable", "false");
   toolBarButtonElement4.addEventListener("mouseup", () => {
-    alert("네 번째 버튼 클릭됨");
+    chrome.runtime.sendMessage({ action: "goToNextTab" });
   });
   Object.assign(toolBarButtonElement4.style, {
     position: "absolute",
@@ -89,10 +89,10 @@ export function createToolBarElement() {
     backgroundColor: "lightgray",
   });
 
-  toolBarButtonElement5.id = "donuTool-button2";
+  toolBarButtonElement5.id = "donuTool-button5";
   toolBarButtonElement5.setAttribute("draggable", "false");
   toolBarButtonElement5.addEventListener("mouseup", () => {
-    alert("다섯 번째 버튼 클릭됨");
+    chrome.runtime.sendMessage({ action: "goToPreviousTab" });
   });
   Object.assign(toolBarButtonElement5.style, {
     position: "absolute",

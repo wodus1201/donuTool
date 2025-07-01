@@ -1,4 +1,5 @@
 let isElementInteractive = false;
+let isMouseDown = false;
 let lastCursorPosition = { x: 0, y: 0 };
 let lastScrollYPosition = window.scrollY;
 
@@ -29,12 +30,30 @@ Object.assign(toolBarUI.style, {
 });
 document.body.appendChild(toolBarUI);
 
-window.addEventListener("mousemove", (e) => {
+window.addEventListener("mousedown", () => {
+  if (!isElementInteractive) {
+    isMouseDown = true;
+    updateToolBarUIPosition();
+  }
+});
+
+window.addEventListener("mouseup", (e) => {
+  isMouseDown = false;
   lastCursorPosition = {
     x: e.pageX,
     y: e.pageY,
   };
   updateToolBarUIPosition();
+});
+
+window.addEventListener("mousemove", (e) => {
+  if (!isMouseDown || isElementInteractive) {
+    lastCursorPosition = {
+      x: e.pageX,
+      y: e.pageY,
+    };
+    updateToolBarUIPosition();
+  }
 
   const elementUnderCursor = document.elementFromPoint(e.clientX, e.clientY);
   isElementInteractive = checkCursorEvent(elementUnderCursor);

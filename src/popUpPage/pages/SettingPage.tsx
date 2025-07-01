@@ -5,8 +5,8 @@ export default function SettingPage() {
   return (
     <>
       <GoBackButton />
-      <div className="text-2xl font-bold mb-7">설정</div>
-      <img src={donuToolBar} className="w-[150px] h-[150px] mb-7"></img>
+      <div className="text-2xl font-bold mb-7 text-gray-600">설정</div>
+      <img src={donuToolBar} className="w-[150px] h-[150px] mb-7 brightness-[1.15]"></img>
       <div className="flex justify-center items-center mb-5">
         <div className="grid grid-cols-5 grid-rows-2 gap-2">
           {Array.from({ length: 10 }).map((_, i) => (

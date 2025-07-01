@@ -1,8 +1,3 @@
-let isElementInteractive = false;
-let isMouseDown = false;
-let lastCursorPosition = { x: 0, y: 0 };
-let lastScrollYPosition = window.scrollY;
-
 chrome.runtime.onMessage.addListener((message) => {
   if (message.action === "requestFullscreen") {
     document.documentElement.requestFullscreen();
@@ -16,6 +11,11 @@ chrome.runtime.onMessage.addListener((message) => {
   }
 });
 
+let isElementInteractive = false;
+let isMouseDown = false;
+let lastCursorPosition = { x: 0, y: 0 };
+let lastScrollYPosition = window.scrollY;
+
 const toolBarUI = document.createElement("img");
 toolBarUI.id = "donuTool-toolBar";
 toolBarUI.src = chrome.runtime.getURL("assets/donuToolBar.png");
@@ -26,7 +26,7 @@ Object.assign(toolBarUI.style, {
   height: "180px",
   pointerEvents: "none",
   zIndex: 9999,
-  transition: "opacity 0.3s ease, transform 0.3s ease",
+  transition: "opacity 0.5s linear, transform 0.5s linear",
 });
 document.body.appendChild(toolBarUI);
 
@@ -43,7 +43,13 @@ window.addEventListener("mouseup", (e) => {
     x: e.pageX,
     y: e.pageY,
   };
+
+  toolBarUI.style.transition = "left 0.2s ease, top 0.2s ease";
   updateToolBarUIPosition();
+
+  setTimeout(() => {
+    toolBarUI.style.transition = "opacity 0.3s ease, transform 0.3s ease";
+  }, 200);
 });
 
 window.addEventListener("mousemove", (e) => {

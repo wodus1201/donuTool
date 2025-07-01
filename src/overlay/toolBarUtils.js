@@ -6,7 +6,7 @@ export function updateToolBarUIPosition(element, position) {
 export function checkCursorEvent(element) {
   while (element && element !== document.body) {
     const style = window.getComputedStyle(element);
-    if (style.cursor !== "auto" && style.cursor !== "default") return true;
+    if (style.cursor !== "auto" && style.cursor !== "default" && style.cursor !== "grabbing") return true;
     element = element.parentElement;
   }
   return false;

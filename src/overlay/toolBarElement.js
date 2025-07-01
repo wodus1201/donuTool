@@ -23,27 +23,27 @@ export function createToolBarElement() {
   });
   toolBarElement.appendChild(toolBarImage);
 
-  const toolBarButtonElement1 = createToolBarButton("donuTool-button1", "18px", "112px", () => {
+  const toolBarButtonElement1 = createToolBarButton("donuTool-button1", "18px", "112px", "Bwd", () => {
     window.history.go(-1);
   });
   toolBarElement.appendChild(toolBarButtonElement1);
 
-  const toolBarButtonElement2 = createToolBarButton("donuTool-button2", "64px", "131px", () => {
+  const toolBarButtonElement2 = createToolBarButton("donuTool-button2", "64px", "131px", "Fwd", () => {
     window.history.go(1);
   });
   toolBarElement.appendChild(toolBarButtonElement2);
 
-  const toolBarButtonElement3 = createToolBarButton("donuTool-button3", "112px", "112px", () => {
+  const toolBarButtonElement3 = createToolBarButton("donuTool-button3", "112px", "112px", "NewT", () => {
     window.open("https://www.google.com", "_blank");
   });
   toolBarElement.appendChild(toolBarButtonElement3);
 
-  const toolBarButtonElement4 = createToolBarButton("donuTool-button4", "131px", "64px", () => {
+  const toolBarButtonElement4 = createToolBarButton("donuTool-button4", "131px", "64px", "NextT", () => {
     chrome.runtime.sendMessage({ action: "goToNextTab" });
   });
   toolBarElement.appendChild(toolBarButtonElement4);
 
-  const toolBarButtonElement5 = createToolBarButton("donuTool-button5", "111px", "19px", () => {
+  const toolBarButtonElement5 = createToolBarButton("donuTool-button5", "111px", "19px", "PrevT", () => {
     chrome.runtime.sendMessage({ action: "goToPreviousTab" });
   });
   toolBarElement.appendChild(toolBarButtonElement5);
@@ -51,13 +51,10 @@ export function createToolBarElement() {
   return toolBarElement;
 }
 
-function createToolBarButton(id, top, left, onClick) {
+function createToolBarButton(id, top, left, text, onClick) {
   const button = document.createElement("div");
-
   button.id = id;
-  button.setAttribute("draggable", "false");
   button.addEventListener("mouseup", onClick);
-
   Object.assign(button.style, {
     position: "absolute",
     top: top,
@@ -66,7 +63,22 @@ function createToolBarButton(id, top, left, onClick) {
     height: "40px",
     borderRadius: "50%",
     backgroundColor: "lightgray",
+    fontSize: "10px",
+    color: "gray",
+    cursor: "grabbing",
   });
+
+  const textInButton = document.createElement("div");
+  textInButton.textContent = text;
+  Object.assign(textInButton.style, {
+    fontSize: "10px",
+    color: "dimgray",
+    textAlign: "center",
+    lineHeight: "40px",
+    fontWeight: 500,
+  });
+
+  button.appendChild(textInButton);
 
   return button;
 }

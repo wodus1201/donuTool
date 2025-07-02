@@ -13,17 +13,11 @@
   const toolBarUI = createToolBarElement();
   document.body.appendChild(toolBarUI);
 
-  const buttonsInToolBar = [
-    document.getElementById("donuTool-button1"),
-    document.getElementById("donuTool-button2"),
-    document.getElementById("donuTool-button3"),
-    document.getElementById("donuTool-button4"),
-    document.getElementById("donuTool-button5"),
-  ];
+  const buttonsInToolBar = [];
 
-  buttonsInToolBar.forEach((button) => {
-    button.style.transition = "transform 0.3s ease";
-  });
+  for (let i = 1; i < 6; i++) {
+    buttonsInToolBar.push(document.getElementById(`donuTool-button${i}`));
+  }
 
   window.addEventListener("mousedown", () => {
     if (!isElementInteractive) {
@@ -66,6 +60,7 @@
 
       buttonsInToolBar.forEach((button) => {
         button.style.transform = getReverseRotationAngle(e.clientX, e.clientY, window.innerWidth, window.innerHeight);
+        button.style.transition = "transform 0.3s ease";
       });
     }
 

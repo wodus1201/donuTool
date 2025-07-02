@@ -23,27 +23,27 @@ export function createToolBarElement() {
   });
   toolBarElement.appendChild(toolBarImage);
 
-  const toolBarButtonElement1 = createToolBarButton("donuTool-button1", "18px", "112px", "Bwd", () => {
+  const toolBarButtonElement1 = createToolBarButton("donuTool-button1", "18px", "112px", "arrow-left", () => {
     window.history.go(-1);
   });
   toolBarElement.appendChild(toolBarButtonElement1);
 
-  const toolBarButtonElement2 = createToolBarButton("donuTool-button2", "64px", "131px", "Fwd", () => {
+  const toolBarButtonElement2 = createToolBarButton("donuTool-button2", "64px", "131px", "arrow-right", () => {
     window.history.go(1);
   });
   toolBarElement.appendChild(toolBarButtonElement2);
 
-  const toolBarButtonElement3 = createToolBarButton("donuTool-button3", "112px", "112px", "NewT", () => {
+  const toolBarButtonElement3 = createToolBarButton("donuTool-button3", "112px", "112px", "new", () => {
     window.open("https://www.google.com", "_blank");
   });
   toolBarElement.appendChild(toolBarButtonElement3);
 
-  const toolBarButtonElement4 = createToolBarButton("donuTool-button4", "131px", "64px", "NextT", () => {
+  const toolBarButtonElement4 = createToolBarButton("donuTool-button4", "131px", "64px", "arrow-right-to-line", () => {
     chrome.runtime.sendMessage({ action: "goToNextTab" });
   });
   toolBarElement.appendChild(toolBarButtonElement4);
 
-  const toolBarButtonElement5 = createToolBarButton("donuTool-button5", "111px", "19px", "PrevT", () => {
+  const toolBarButtonElement5 = createToolBarButton("donuTool-button5", "111px", "19px", "arrow-left-to-line", () => {
     chrome.runtime.sendMessage({ action: "goToPreviousTab" });
   });
   toolBarElement.appendChild(toolBarButtonElement5);
@@ -51,7 +51,7 @@ export function createToolBarElement() {
   return toolBarElement;
 }
 
-function createToolBarButton(id, top, left, text, onClick) {
+function createToolBarButton(id, top, left, svgName, onClick) {
   const button = document.createElement("div");
   button.id = id;
   button.addEventListener("mouseup", onClick);
@@ -59,26 +59,28 @@ function createToolBarButton(id, top, left, text, onClick) {
     position: "absolute",
     top: top,
     left: left,
+    display: "flex",
     width: "40px",
     height: "40px",
     borderRadius: "50%",
-    backgroundColor: "lightgray",
+    justifyContent: "center",
+    alignItems: "center",
     fontSize: "10px",
     color: "gray",
+    backgroundColor: "lightgray",
     cursor: "grabbing",
   });
 
-  const textInButton = document.createElement("div");
-  textInButton.textContent = text;
-  Object.assign(textInButton.style, {
-    fontSize: "10px",
-    color: "dimgray",
-    textAlign: "center",
-    lineHeight: "40px",
-    fontWeight: 500,
+  const svgImg = document.createElement("img");
+  svgImg.src = chrome.runtime.getURL(`assets/${svgName}.svg`);
+  Object.assign(svgImg.style, {
+    width: "25px",
+    height: "25px",
+    display: "block",
+    pointerEvents: "none",
   });
 
-  button.appendChild(textInButton);
+  button.appendChild(svgImg);
 
   return button;
 }
